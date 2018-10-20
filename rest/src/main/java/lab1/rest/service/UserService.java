@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 @ComponentScan
@@ -24,28 +25,40 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public void saveUser(Map<String, String> requestParams) {
+    public String saveUser(Map<String, String> requestParams) {
         User user = new User();
         user.setLogin(requestParams.get("login"));
         user.setPassword(requestParams.get("password"));
-
-        userRepository.save(user);
+        try {
+            userRepository.save(user);
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+        return "";
     }
 
-    public User findUserByLogin(String login) {
+    public boolean checkIfUserExists(String login){
+        return userRepository.findUserByLogin(login).isPresent();
+    }
+
+
+    public Optional<User> findUserByLogin(String login) {
         return userRepository.findUserByLogin(login);
     }
 
-    public void updateUser(User user, Map<String, String> requestParams) {
-        user.setPassword(requestParams.get("password"));
-        userRepository.save(user);
+    public boolean updateUser(String login, Map<String, String> requestParams) {
+        Optional<User> user = findUserByLogin(login);
+        user.ifPresent(u -> {
+            u.setPassword(requestParams.get("password"));
+            userRepository.save(u);
+        });
+        return user.isPresent();
     }
 
     public boolean deleteUser(String login) {
-        User user = findUserByLogin(login);
-        if (user != null) {
-            userRepository.delete(user);
-        }
-        return user != null;
+        Optional<User> user = findUserByLogin(login);
+        user.ifPresent(it -> userRepository.delete(it));
+
+        return user.isPresent();
     }
 }

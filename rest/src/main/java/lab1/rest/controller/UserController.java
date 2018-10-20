@@ -23,7 +23,8 @@ public class UserController {
     public void setUserService(UserService userService) {
         this.userService = userService;
     }
-//todo tylko json jest oblusigwany
+
+    //todo tylko json jest oblusigwany
     @GetMapping(value = "users",
             produces = {MediaType.TEXT_PLAIN_VALUE, MediaType.APPLICATION_XML_VALUE,
                     MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_HTML_VALUE})
@@ -33,8 +34,8 @@ public class UserController {
 
     @GetMapping(value = "users/{login}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> checkIfUserExists(@PathVariable String login) {
-        User user = userService.findUserByLogin(login);
-        if (user != null) {
+        boolean userFound = userService.checkIfUserExists(login);
+        if (userFound) {
             return new ResponseEntity<>("Found user with given login", HttpStatus.OK);
         } else {
             return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
@@ -48,12 +49,11 @@ public class UserController {
 
     @PutMapping(value = "users/{login}")
     public ResponseEntity<String> updateUsersPassword(@PathVariable String login, @RequestBody Map<String, String> requestParams) {
-        User user = userService.findUserByLogin(login);
-        if (user == null) {
-            return new ResponseEntity<>("Cannot update this user, user not found", HttpStatus.NOT_FOUND);
-        } else {
-            userService.updateUser(user, requestParams);
+        boolean userUpdated = userService.updateUser(login, requestParams);
+        if (userUpdated) {
             return new ResponseEntity<>("User updated", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Cannot update this user, user not found", HttpStatus.NOT_FOUND);
         }
     }
 
