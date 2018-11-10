@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:exam="http://example/">
+<soapenv:Header/>
+<soapenv:Body>
+    <exam:createAccounts>
+        <!--Zero or more repetitions:-->
+        <arg0>
+            <!--Optional:-->
+            <additionalData>
+            	 <dateOfBirth>53434636</dateOfBirth>
+            	<!--Optional:-->
+            	<lastname>5435346</lastname>
+            	<!--Optional:-->
+            	<name>asdasaaaa</name>
+            </additionalData>
+            <!--Optional:-->
+            <avatar>
+                <!--Optional:-->
+                <fileName>3525255</fileName>
+                <!--Optional:-->
+                <path>5353466</path>
+            </avatar>
+            <!--Optional:-->
+            <dateOfBirth>53434636</dateOfBirth>
+            <!--Optional:-->
+            <lastname>5435346</lastname>
+            <!--Optional:-->
+            <name>53464656</name>
+        </arg0>
+        <arg0>
+            <!--Optional:-->
+            <additionalData/>
+            <!--Optional:-->
+            <avatar>
+                <!--Optional:-->
+                <fileName>3525255</fileName>
+                <!--Optional:-->
+                <path>5353466</path>
+            </avatar>
+            <!--Optional:-->
+            <dateOfBirth>53434636</dateOfBirth>
+            <!--Optional:-->
+            <lastname>5435346</lastname>
+            <!--Optional:-->
+            <name>556</name>
+        </arg0>
+        <arg0>
+            <!--Optional:-->
+            <additionalData/>
+            <!--Optional:-->
+            <avatar>
+                <!--Optional:-->
+                <fileName>3525255</fileName>
+                <!--Optional:-->
+                <path>5353466</path>
+            </avatar>
+            <!--Optional:-->
+            <dateOfBirth>53434636</dateOfBirth>
+            <!--Optional:-->
+            <lastname>5435346</lastname>
+            <!--Optional:-->
+            <name>6</name>
+        </arg0>
+    </exam:createAccounts>
+</soapenv:Body>
+</soapenv:Envelope>

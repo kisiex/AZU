@@ -4,6 +4,7 @@ import lab1.rest.model.User;
 import lab1.rest.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -24,11 +25,12 @@ public class UserController {
         this.userService = userService;
     }
 
-    //todo tylko json jest oblusigwany
     @GetMapping(value = "users",
             produces = {MediaType.TEXT_PLAIN_VALUE, MediaType.APPLICATION_XML_VALUE,
                     MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_HTML_VALUE})
+    @ResponseBody
     public ResponseEntity<List<User>> getAllUsers() {
+
         return new ResponseEntity<>(userService.findAllUsers(), HttpStatus.OK);
     }
 

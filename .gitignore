@@ -21,3 +21,17 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+/AZU.iml
+.gradle/
+.idea/
+AZU.iml
+gradle/wrapper/gradle-wrapper.properties
+rest/src/main/webapp/
+rest/src/test/java/pl/
+rest/src/test/resources/
+webservice/.gradle/
+webservice/.idea/
+webservice/gradle/wrapper/gradle-wrapper.properties
+webservice/web/
+/webservice/.idea/
+/webservice/.gradle/
